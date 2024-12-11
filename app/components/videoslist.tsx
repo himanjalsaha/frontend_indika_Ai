@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { VideoFile } from '@/types'
-import { Calendar, HardDrive, Play, Search } from 'lucide-react'
+import { Calendar, Cross, CrossIcon, HardDrive, Play, Search } from 'lucide-react'
+import SearchFormReset from './formreset'
 
 async function getVideos(): Promise<VideoFile[]> {
   const res = await fetch('https://indika-backend.onrender.com/fetch_files')
@@ -18,16 +19,20 @@ async function searchVideos(query: string): Promise<VideoFile[]> {
   return res.json()
 }
 
+
+
 export default async function VideosList({ searchParams }: { searchParams: { query?: string } }) {
   const query = searchParams.query || ''
   const videos = query ? await searchVideos(query) : await getVideos()
+
+  
 
 
   return (
     <main className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold mb-6">Video Streaming Platform</h1>
       
-      <form action="" className="mb-6">
+      <form action="" className=" search-form">
         <div className="flex items-center border-b  border-gray-300 py-2">
           <input 
             className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" 
@@ -39,9 +44,12 @@ export default async function VideosList({ searchParams }: { searchParams: { que
           <button 
             className="flex-shrink-0 bg-indigo-500 hover:bg-indigo-700 border-indigo-500 hover:border-indigo-700 text-sm border-4 text-white py-1 px-2 rounded" 
             type="submit"
+          
           >
             <Search className="h-5 w-5" />
           </button>
+         < SearchFormReset/>
+          
         </div>
       </form>
 
@@ -71,6 +79,8 @@ export default async function VideosList({ searchParams }: { searchParams: { que
                     <Play className="h-4 w-4 mr-2" />
                     Play
                   </Link>
+
+                  
                 </div>
               </div>
             ))}
