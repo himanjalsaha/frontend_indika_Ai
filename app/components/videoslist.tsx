@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { VideoFile } from '@/types'
-import { FileVideo, Calendar, HardDrive } from 'lucide-react'
+import {  Calendar, HardDrive } from 'lucide-react'
 
 async function getVideos(): Promise<VideoFile[]> {
   const res = await fetch('https://indika-backend.onrender.com/fetch_files')

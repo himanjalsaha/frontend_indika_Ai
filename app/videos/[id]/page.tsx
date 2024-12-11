@@ -11,7 +11,7 @@ export default function MinimalistVideoPlayer() {
 
   const get_data_by_id = async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:5000/fetch_file_by_id?id=${id}`)
+      const res = await fetch(`https://indika-backend.onrender.com/fetch_file_by_id?id=${id}`)
       
       if (!res.ok) {
         throw new Error('Failed to fetch data')
