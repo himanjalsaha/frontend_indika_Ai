@@ -1,10 +1,9 @@
-import React from 'react'
-import Videoslist from './components/videoslist'
+import VideosList from "./components/videoslist"
 
-const page = () => {
+export default function Home({ searchParams }: { searchParams: { query?: string } }) {
   return (
-    <Videoslist/>
+    <div>
+      <VideosList searchParams={searchParams} />
+    </div>
   )
 }
-
-export default page
