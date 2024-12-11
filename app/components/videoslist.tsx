@@ -5,7 +5,7 @@ import {  Calendar, HardDrive } from 'lucide-react'
 async function getVideos(): Promise<VideoFile[]> {
   const res = await fetch('https://indika-backend.onrender.com/fetch_files')
   if (!res.ok) {
-    throw new Error('Failed to fetch videos')
+    throw new Error('Failed to fetch ')
   }
   return res.json()
 }
