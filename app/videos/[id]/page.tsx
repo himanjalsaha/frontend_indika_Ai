@@ -28,7 +28,7 @@ export default function MinimalistVideoPlayer() {
     if (id) {
       get_data_by_id()
     }
-  }, [id])
+  }, [id , get_data_by_id])
 
   if (!data) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>
