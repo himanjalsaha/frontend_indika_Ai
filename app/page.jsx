@@ -1,9 +1,8 @@
 import { Suspense } from 'react'
-import { VideoFile } from '@/types'
 import { Search } from 'lucide-react'
 import { VideoItem } from './components/videoItem'
 
-async function getVideos(): Promise<VideoFile[]> {
+async function getVideos() {
   const res = await fetch('https://indika-backend.onrender.com/fetch_files')
   if (!res.ok) {
     throw new Error('Failed to fetch videos')
@@ -11,7 +10,7 @@ async function getVideos(): Promise<VideoFile[]> {
   return res.json()
 }
 
-async function searchVideos(query: string): Promise<VideoFile[]> {
+async function searchVideos(query) {
   const res = await fetch(`https://indika-backend.onrender.com/fetch_file_by_name?query=${encodeURIComponent(query)}`)
   if (!res.ok) {
     throw new Error('Failed to search videos')
@@ -19,7 +18,7 @@ async function searchVideos(query: string): Promise<VideoFile[]> {
   return res.json()
 }
 
-function SearchForm({ defaultValue }: { defaultValue: string }) {
+function SearchForm({ defaultValue }) {
   return (
     <form action="" className="flex items-center space-x-2 mb-6">
       <input
@@ -45,7 +44,7 @@ function SearchForm({ defaultValue }: { defaultValue: string }) {
   )
 }
 
-export default async function VideosList({ searchParams }: { searchParams: { query?: string } }) {
+export default async function VideosList({ searchParams }) {
   const query = searchParams.query || ''
   const videos = query ? await searchVideos(query) : await getVideos()
 
@@ -69,4 +68,3 @@ export default async function VideosList({ searchParams }: { searchParams: { que
     </main>
   )
 }
-
